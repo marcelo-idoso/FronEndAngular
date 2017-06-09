@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="ProfessorModule">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,7 +15,7 @@
         <!-- Custom styles for this template -->
         <link href="vendor/bootstrap/css/carousel.css" rel="stylesheet">
     </head>
-    <body>
+    <body ng-controller="ProfessorController">
 
         <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,26 +44,48 @@
             <form>
                 <div class="form-group">
                     <label for="codigo">Código</label>
-                    <input type="text" class="form-control" id="codigo" placeholder="">
+                    <input type="text" class="form-control" id="codigo" placeholder="" ng-model="professor.codigo">
                 </div>
 
                 <div class="form-group">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control" id="nome" placeholder="Nome">
+                    <input type="text" class="form-control" id="nome" placeholder="Nome" ng-model="professor.nome">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" ng-model="professor.email">
                 </div>
                 <div class="form-group">
-                    <label for="password1">Password</label>
-                    <input type="password" class="form-control" id="password1" placeholder="Password">
+                    <label for="fone">Password</label>
+                    <input type="text" class="form-control" id="fone" placeholder="Telefone" ng-model="professor.fone">
                 </div>
 
-                <button type="submit"  class="btn btn-secondary">Novo</button>
-                <button type="submit"  class="btn btn-secondary">Gravar</button>
-                <button type="submit"  class="btn btn-secondary">Excluir</button>
+                <button type="submit"  ng-click="limparCampos()" class="btn btn-secondary">Novo</button>
+                <button type="submit"  ng-click="salvarProfessor()"class="btn btn-secondary">Gravar</button>
+                <button type="submit"  ng-click="excluirProfessor()"class="btn btn-secondary">Excluir</button>
             </form>
+
+
+
+            <hr />
+
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="listProfessor in professores" ng-click="carregaProfessor(listProfessor)">
+                        <th scope="row">{{listProfessor.codigo}}</th>
+                        <td>{{listProfessor.nome}}</td>
+                        <td>{{listProfessor.email}}</td>
+                        <td>{{listProfessor.fone}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
 
@@ -77,7 +99,9 @@
         <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
         <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
         <script src="vendor/bootstrap/assets/js/vendor/holder.min.js"></script>
+        <script src="vendor/angular/angular.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="vendor/bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
+        <script src="js/professores.js"></script>
     </body>
 </html>
